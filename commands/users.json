@@ -1,0 +1,62 @@
+[
+  {
+    "userName": "shelestunovil#0544",
+    "userId": "643027447058792479",
+    "DickGame": {
+      "userDickLength": -30,
+      "timesCalled": 1038,
+      "goodTries": 385,
+      "badTries": 653,
+      "totalGrowth": 579,
+      "totalDownGrade": -634
+    }
+  },
+  {
+    "userName": "hippo#2945",
+    "userId": "439454916021321728",
+    "DickGame": {
+      "userDickLength": 12,
+      "timesCalled": 24,
+      "goodTries": 13,
+      "badTries": 11,
+      "totalGrowth": 18,
+      "totalDownGrade": -11
+    }
+  },
+  {
+    "userName": "Boy From God#2772",
+    "userId": "390561515054563328",
+    "DickGame": {
+      "userDickLength": 54,
+      "timesCalled": 135,
+      "goodTries": 60,
+      "badTries": 75,
+      "totalGrowth": 97,
+      "totalDownGrade": -65
+    }
+  },
+  {
+    "userName": "Klash#2545",
+    "userId": "542007740881436682",
+    "DickGame": {
+      "userDickLength": 6,
+      "timesCalled": 1,
+      "goodTries": 1,
+      "badTries": 0,
+      "totalGrowth": 1,
+      "totalDownGrade": 0
+    }
+  },
+  {
+    "userName": "Кидель Фастро#9671",
+    "userId": "485320738186985482",
+    "DickGame": {
+      "userDickLength": 5,
+      "timesCalled": 0,
+      "goodTries": 0,
+      "badTries": 0,
+      "totalGrowth": 0,
+      "totalDownGrade": 0
+    }
+  }
+]
