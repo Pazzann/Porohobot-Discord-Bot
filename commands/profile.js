@@ -44,7 +44,7 @@ function createEmbed(ourUserData, user){
         .addFields(
             { name: '\u200B', value: '\u200B' },
             { name: '🍌 **DickGame** 📊', value: `\u200B
-                                                 ⠀💪⠀⠀Довжина: __*${ourUserData.DickGame.userDickLength} см*__
+                                                 ⠀💪⠀Довжина: __*${ourUserData.DickGame.userDickLength} см*__
                                                  \u200B
                                                  ⠀◈⠀⠀Усього спроб: __*${ourUserData.DickGame.timesCalled}*__
                                                  ⠀◈⠀⠀Гарних спроб: __*${ourUserData.DickGame.goodTries}*__
