@@ -1,0 +1,28 @@
+{
+  "історичні": [
+    {
+      "playlistName": "лор",
+      "playlistDescription": "Історичні пісні про Україну",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxqN1-UwWi-Dj_9yXgW89Q6U"
+    },
+    {
+      "playlistName": "махно",
+      "playlistDescription": "Пісні про Махно",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxoGJErZoxeitfxXSTBdsw_3"
+    }
+  ],
+  "рок": [
+    {
+      "playlistName": "роктаметал",
+      "playlistDescription": "Український Рок",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxrky5bSLFeQhaqcjGfzUbki"
+    }
+  ],
+  "поп": [
+    {
+      "playlistName": "попса",
+      "playlistDescription": "Українська крінжова попса",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxrr5GA_3-qJGakvCMGjmUPF"
+    }
+  ]
+}
