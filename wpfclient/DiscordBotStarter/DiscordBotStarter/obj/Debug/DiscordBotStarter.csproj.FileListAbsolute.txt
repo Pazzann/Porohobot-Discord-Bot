@@ -1,0 +1,15 @@
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\bin\Debug\DiscordBotStarter.exe.config
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\bin\Debug\DiscordBotStarter.exe
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\bin\Debug\DiscordBotStarter.pdb
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter.csprojAssemblyReference.cache
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\MainWindow.g.cs
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\App.g.cs
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter_MarkupCompile.cache
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter_MarkupCompile.lref
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\MainWindow.baml
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter.g.resources
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter.Properties.Resources.resources
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter.csproj.GenerateResource.cache
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter.exe
+C:\Users\admin\Desktop\Porohobot-Discord-Bot\wpfclient\DiscordBotStarter\DiscordBotStarter\obj\Debug\DiscordBotStarter.pdb
