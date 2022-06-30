@@ -10,7 +10,7 @@ themes.set("історичні", [
     new Playlist("лор", "Історичні пісні про Україну", "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxqN1-UwWi-Dj_9yXgW89Q6U"),
     new Playlist("махно", "Пісні про Махно", "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxoGJErZoxeitfxXSTBdsw_3"),]);
 themes.set("рок", [
-    new Playlist("роктаметал", "Український Рок", "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxrky5bSLFeQhaqcjGfzUbki"),]);
+    new Playlist("Рок та Метал", "Український Рок", "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxrky5bSLFeQhaqcjGfzUbki"),]);
 themes.set("поп", [
     new Playlist("попса", "Українська крінжова попса", "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxrr5GA_3-qJGakvCMGjmUPF"),]);
 

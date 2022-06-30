@@ -1,22 +1,21 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 const { MusicSlashCommandBuilder }= require('./methods/MusicCommandBuilder.js');
 const { QueryType } = require("discord-player")
 const Playlists = require('./music/playlist.json');
 
-function createEmbed(url){
+function createEmbed(playlist){
     const musicEmbed = new MessageEmbed()
         .setColor('#d5b33e')
-        .setTitle('TEST')
-        .setDescription(url);
-    return musicEmbed
+        .setTitle(playlist.playlistName)
+        .setDescription(playlist.playlistDescription);
+    return musicEmbed;
 }
 
 
 function getUrlFromArrayByName(arr, name){
     for (let i = 0; i < arr.length; i++){
         if (arr[i].playlistName == name){
-            return arr[i].playlistUrl;
+            return arr[i];
         }
     }
     return "NO MATCHES";
@@ -31,10 +30,10 @@ module.exports = {
         const queue = await client.player.createQueue(interaction.guild);
         if(!queue.connection) await queue.connect(interaction.member.voice.channel);
 
-        let actualURL = Playlists[interaction.options.getSubcommand()];
-        actualURL = getUrlFromArrayByName(actualURL, interaction.options.getString("назваплейлісту"))
+        let actualPlaylist = Playlists[interaction.options.getSubcommand()];
+        actualPlaylist = getUrlFromArrayByName(actualPlaylist, interaction.options.getString("назваплейлісту"))
 
-        const result = await client.player.search(actualURL,{
+        const result = await client.player.search(actualPlaylist.playlistUrl,{
             requestedBy: interaction.user,
             searchEngine: QueryType.YOUTUBE_PLAYLIST
         })
@@ -45,7 +44,7 @@ module.exports = {
         await queue.addTracks(result.tracks);
 
         if (!queue.playing) await queue.play();
-        const embed = createEmbed(actualURL);
+        const embed = createEmbed(actualPlaylist);
         await interaction.reply({embeds: [embed]});
     }
 }

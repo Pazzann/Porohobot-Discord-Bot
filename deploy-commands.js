@@ -33,6 +33,12 @@ const commands = [
 		.setName('help')
 		.setDescription('Команда, яка знайомить вас с ботом.'),
 	MusicSlashCommandBuilder(),
+	new SlashCommandBuilder()
+		.setName("skip")
+		.setDescription("Скіпнути трек"),
+	new SlashCommandBuilder()
+		.setName("quit")
+		.setDescription("Бот виходить з войсу та очищує чергу"),
 
 ]
 	.map(command => command.toJSON());
