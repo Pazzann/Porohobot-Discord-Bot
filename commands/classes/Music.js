@@ -3,8 +3,6 @@ module.exports.FullPlayer = class {
         for (let [theme, playLists] of themes.entries()) {
             this[theme] = playLists;
         }
-
-
     }
 }
 

@@ -3,6 +3,7 @@ const dotenv = require('./node_modules/dotenv');
 const fs = require('node:fs');
 const path = require('node:path');
 const MsgCreate = require("./msgscanning/msgcreate.js")
+const {Player} = require('discord-player');
 
 const { token } = require('./config.json');
 
@@ -12,10 +13,16 @@ const client = new DiscordJS.Client({
     intents: [
         DiscordJS.Intents.FLAGS.GUILDS,
         DiscordJS.Intents.FLAGS.GUILD_MESSAGES,
-        DiscordJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS
+        DiscordJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        DiscordJS.Intents.FLAGS.GUILD_VOICE_STATES
     ]
 });
-
+client.player = new Player(client, {
+    ytdlOptions:{
+        quality: "highestaudio",
+        highWaterMark: 1 << 25
+    }
+})
 
 const commands = new Map();
 const commandsPath = path.join(__dirname, 'commands');
