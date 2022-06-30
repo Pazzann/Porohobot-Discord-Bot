@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
-const { MusicSlashCommandBuilder }= require('./methods/MusicCommandBuilder.js');
+const { MusicSlashCommandBuilder }= require('../../functions/MusicCommandBuilder.js');
 const { QueryType } = require("discord-player")
-const Playlists = require('./music/playlist.json');
+const Playlists = require('../../music/playlist.json');
 
 function createEmbed(playlist){
     const musicEmbed = new MessageEmbed()

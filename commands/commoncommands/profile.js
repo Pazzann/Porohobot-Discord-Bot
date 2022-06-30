@@ -3,11 +3,11 @@ const { MessageEmbed } = require('discord.js');
 
 const fs = require('node:fs');
 const path = require("node:path");
-const {User} = require("./classes/User");
+const {User} = require("../../classes/User");
 const commandsPath = path.join(__dirname);
 
 function GetData(interaction){
-    let UserArr = JSON.parse(fs.readFileSync(commandsPath+"\\users.json", "utf8"));
+    let UserArr = JSON.parse(fs.readFileSync(commandsPath+"\\../users.json", "utf8"));
 
     let ourUserData = UserArr.find(function (item, index, array) {
         if (item.userId == interaction.member?.id) {
@@ -20,7 +20,7 @@ function GetData(interaction){
     if (typeof ourUserData === 'undefined') {
         UserArr.push(new User(interaction));
         ourUserData = UserArr[UserArr.length - 1];
-        fs.writeFileSync(commandsPath+"\\users.json", JSON.stringify(UserArr, null, 2));
+        fs.writeFileSync(commandsPath+"\\../users.json", JSON.stringify(UserArr, null, 2));
     }
     return ourUserData;
 }

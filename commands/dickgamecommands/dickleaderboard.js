@@ -54,7 +54,7 @@ function CreateEmbed(UserArr, ourUserData, place){
 function ShowLeaderBoard(interaction)
 {
     let place;
-    let UserArr = JSON.parse(fs.readFileSync(commandsPath+"\\users.json", "utf8"));
+    let UserArr = JSON.parse(fs.readFileSync(commandsPath+"\\../users.json", "utf8"));
     UserArr.sort(function (a, b) {
         return b.DickGame.userDickLength - a.DickGame.userDickLength;
     })

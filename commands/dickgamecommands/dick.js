@@ -4,11 +4,11 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
 const fs = require('node:fs');
-const { User } = require('./classes/User');
+const { User } = require('../../classes/User');
 const path = require("node:path");
 const commandsPath = path.join(__dirname);
 
-const { DickDraw } = require('./methods/DickDraw');
+const { DickDraw } = require('../../functions/DickDraw');
 
 function GetRandomDickAddition(min, max) {
     // получить случайное число от (min-0.5) до (max+0.5)
@@ -21,7 +21,7 @@ let growthOneTime;
 function GrowDick(interaction)
     {
         let indexOfItemChange;
-        let UserArr = JSON.parse(fs.readFileSync(commandsPath+"\\users.json", "utf8"));
+        let UserArr = JSON.parse(fs.readFileSync(commandsPath+"\\../users.json", "utf8"));
         let ourUserData = UserArr.find(function (item, index, array) {
             if (item.userId == interaction.member?.id) {
                 indexOfItemChange = index;
@@ -53,7 +53,7 @@ function GrowDick(interaction)
         ourUserData.DickGame.userDickLength += growthOneTime;
 
         UserArr[indexOfItemChange] = ourUserData;
-        fs.writeFileSync(commandsPath+"\\users.json", JSON.stringify(UserArr, null, 2));
+        fs.writeFileSync(commandsPath+"\\../users.json", JSON.stringify(UserArr, null, 2));
 
         return ourUserData.DickGame.userDickLength;
     }

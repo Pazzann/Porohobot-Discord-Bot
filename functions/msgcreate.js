@@ -26,8 +26,6 @@ module.exports.MsgReading = function(message)
         if(message.author.username === "shelestunovil")
         {
             message.react('🤡')
-            //message.member.timeout(60 * 1000, 'HIHI HAHA'); //mute for 1 minute
-            
         }
     }
 
