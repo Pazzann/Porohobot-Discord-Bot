@@ -1,14 +1,10 @@
 const DiscordJS = require('./node_modules/discord.js');
-const dotenv = require('./node_modules/dotenv');
-const fs = require('node:fs');
-const path = require('node:path');
 const MsgCreate = require("./functions/MsgCreate.js")
 const {Player} = require('discord-player');
-const {RegCommands} = require('./functions/CommandRegister')
-
+const {RegCommands} = require('./functions/CommandRegister');
 const {token} = require('./config.json');
 
-dotenv.config();
+
 
 const client = new DiscordJS.Client({
     intents: [
