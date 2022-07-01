@@ -11,7 +11,12 @@ module.exports = {
         const queue = client.player.getQueue(interaction.guildId);
 
         if (!queue) return await interaction.reply("There is nothing playing now");
-        queue.repeatMode = 2;
-        interaction.reply("looped queue");
+        if( queue.repeatMode == 2 ){
+            queue.repeatMode = 0;
+            interaction.reply("Unlooped queue");
+        }else{
+            queue.repeatMode = 2;
+            interaction.reply("Looped queue");
+        }
     }
 }

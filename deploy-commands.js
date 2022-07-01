@@ -54,6 +54,9 @@ const commands = [
     new SlashCommandBuilder()
         .setName("loopqueue")
         .setDescription("Залуплює чергу пісень"),
+    new SlashCommandBuilder()
+        .setName('musicinfo')
+        .setDescription('Допомога зі списком плейлістів'),
 
 ]
     .map(command => command.toJSON());

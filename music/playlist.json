@@ -1,28 +1,50 @@
 {
   "історичні": [
     {
-      "playlistName": "лор",
-      "playlistDescription": "Історичні пісні про Україну",
+      "playlistName": "Лор",
+      "playlistDescription": "__*Історичні пісні про Україну*__\n         **Включа:** пісні про козаків, УНР та інші...",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxqN1-UwWi-Dj_9yXgW89Q6U"
     },
     {
-      "playlistName": "махно",
-      "playlistDescription": "Пісні про Махно",
+      "playlistName": "Махно",
+      "playlistDescription": "__*Історичні пісні про Махно*__\n         **Включає** різні пісні такі як анархія мама та інші...",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxoGJErZoxeitfxXSTBdsw_3"
     }
   ],
   "рок": [
     {
-      "playlistName": "Рок та Метал",
-      "playlistDescription": "Український Рок",
+      "playlistName": "Рок та Метал бойовий",
+      "playlistDescription": "__*Український бойовий рок*__\n         **Включає:** Пирятин, Тінь Сонця, Орест Лютий, Скрябін та інші...",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxrky5bSLFeQhaqcjGfzUbki"
+    },
+    {
+      "playlistName": "Жадан і Собаки",
+      "playlistDescription": "__*Найкращі пісні цього виконавця*__\n         **Включає:** Мальви, Автозак та інші...",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLAqSgtACVISFe77VOiGucndZelDuHGdiw"
+    },
+    {
+      "playlistName": "Український побутовий рок",
+      "playlistDescription": "__*Плейліст ще в розробці*__\n         **Включає:** ...",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLAqSgtACVISFXKRlCl2s1UjGFtBLnbKCB"
     }
   ],
   "поп": [
     {
-      "playlistName": "попса",
-      "playlistDescription": "Українська крінжова попса",
+      "playlistName": "Попса",
+      "playlistDescription": "__*Українська крінжова попса на тему війни і не тільки*__\n        **Включає:** Океан Ельзи, THMK, Go_A та інші...",
       "playlistUrl": "https://www.youtube.com/playlist?list=PLaJ1dlOqZMxrr5GA_3-qJGakvCMGjmUPF"
+    }
+  ],
+  "постпанк": [
+    {
+      "playlistName": "Український постпанк",
+      "playlistDescription": "__*Плейліст ще в розробці*__\n         **Включає:** ...",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLAqSgtACVISFqAeVO9CEV-uzJLPNeH3Q2"
+    },
+    {
+      "playlistName": "Містморн",
+      "playlistDescription": "__*Найкращі пісні цього виконавця*__\n         **Включає:** Дідько я у розпачі, Панельні будинки та інші...",
+      "playlistUrl": "https://www.youtube.com/playlist?list=PLAqSgtACVISH4IcyYCWA_2Dz9ZjHA1p0e"
     }
   ]
 }

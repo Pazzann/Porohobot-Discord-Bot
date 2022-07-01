@@ -1,20 +1,22 @@
-const { MessageEmbed } = require('discord.js');
-const { MusicSlashCommandBuilder }= require('../../functions/MusicCommandBuilder.js');
-const { QueryType } = require("discord-player")
+const {MessageEmbed} = require('discord.js');
+const {MusicSlashCommandBuilder} = require('../../functions/MusicCommandBuilder.js');
+const {QueryType} = require("discord-player")
 const Playlists = require('../../music/playlist.json');
 
-function createEmbed(playlist){
+function createEmbed(playlist, actualplaylist) {
     const musicEmbed = new MessageEmbed()
         .setColor('#d5b33e')
         .setTitle(playlist.playlistName)
-        .setDescription(playlist.playlistDescription);
+        .setDescription(playlist.playlistDescription)
+        .setThumbnail(actualplaylist.thumbnail)
+        .setURL(playlist.playlistUrl);
     return musicEmbed;
 }
 
 
-function getUrlFromArrayByName(arr, name){
-    for (let i = 0; i < arr.length; i++){
-        if (arr[i].playlistName == name){
+function getUrlFromArrayByName(arr, name) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].playlistName == name) {
             return arr[i];
         }
     }
@@ -23,17 +25,17 @@ function getUrlFromArrayByName(arr, name){
 
 module.exports = {
     data: MusicSlashCommandBuilder(),
-    async execute(interaction, client){
-        if(!interaction.member.voice.channel)
+    async execute(interaction, client) {
+        if (!interaction.member.voice.channel)
             return interaction.reply("YOU MUST BE IN VOICE CHANNEL");
 
         const queue = await client.player.createQueue(interaction.guild);
-        if(!queue.connection) await queue.connect(interaction.member.voice.channel);
+        if (!queue.connection) await queue.connect(interaction.member.voice.channel);
 
         let actualPlaylist = Playlists[interaction.options.getSubcommand()];
         actualPlaylist = getUrlFromArrayByName(actualPlaylist, interaction.options.getString("назваплейлісту"))
 
-        const result = await client.player.search(actualPlaylist.playlistUrl,{
+        const result = await client.player.search(actualPlaylist.playlistUrl, {
             requestedBy: interaction.user,
             searchEngine: QueryType.YOUTUBE_PLAYLIST
         })
@@ -44,7 +46,7 @@ module.exports = {
         await queue.addTracks(result.tracks);
 
         if (!queue.playing) await queue.play();
-        const embed = createEmbed(actualPlaylist);
+        const embed = createEmbed(actualPlaylist, playlist);
         await interaction.reply({embeds: [embed]});
     }
 }
