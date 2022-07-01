@@ -14,7 +14,14 @@ module.exports = {
 
         const curr = queue.current;
         queue.skip();
-        interaction.reply(`skipped ${curr.title} \n${curr.author}`)
+
+        const embed = new MessageEmbed()
+            .setColor('#a450a3')
+            .setThumbnail(curr.thumbnail)
+            .setTitle(`Трек скіпнуто!`)
+            .setDescription(curr.title);
+
+        interaction.reply({embeds: [embed]});
 
     }
 }

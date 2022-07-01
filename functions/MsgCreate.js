@@ -9,18 +9,18 @@ module.exports.MsgReading = function(message)
 
         if (msgLow.includes("слава україні")||msgLow.includes("слава украине")){
             message.reply({
-                content: 'Героям Слава!'
+                content: '🇺🇦Героям Слава!'
             });
             checkcheer = true;
         }else if((msgLow.includes("слава нації")||msgLow.includes("слава нации"))){
             message.reply({
-                content: 'Смерть Ворогам!'
+                content: '🇺🇦Смерть Ворогам!'
             });
             
             
         }else if(msgLow =="украина"||msgLow=="україна"){
             message.reply({
-                content: 'Понад Усе!'
+                content: '🇺🇦Понад Усе!'
             });
         }
         if(message.author.username === "shelestunovil")

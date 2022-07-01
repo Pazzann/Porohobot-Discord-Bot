@@ -14,6 +14,11 @@ module.exports = {
         if (!queue) return await interaction.reply("There is nothing playing now");
 
         queue.destroy();
-        await interaction.reply("Допобачення!")
+        const embed = new MessageEmbed()
+            .setColor('#ffa094')
+            .setTitle(`Допобачення!`)
+            .setDescription('Користуйтесь ще ще!');
+
+        interaction.reply({embeds: [embed]});
     }
 }
