@@ -23,7 +23,18 @@ module.exports.MsgReading = function(message)
                 content: '🇺🇦Понад Усе!'
             });
         }
-        if(message.author.username === "shelestunovil")
+        //shelestunovil
+        if(message.author.id == "643027447058792479")
+        {
+            message.react('🤡')
+        }
+        //bfg
+        if(message.author.id == "390561515054563328")
+        {
+            message.react('💪')
+        }
+        //leo
+        if(message.author.id == "690911579532689429")
         {
             message.react('🤡')
         }
