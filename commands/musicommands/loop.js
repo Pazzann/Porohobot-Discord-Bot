@@ -12,12 +12,19 @@ module.exports = {
 
         if (!queue) return await interaction.reply("There is nothing playing now");
 
+        const current = queue.current;
+        const embed = new MessageEmbed()
+            .setColor('#cb0000')
+            .setDescription(`\`\`[${current.duration}]\`\` ${current.title}`)
+            .setThumbnail(current.url);
+
         if( queue.repeatMode == 1 ){
             queue.repeatMode = 0;
-            interaction.reply("Unlooped track");
+            embed.setTitle(`♾ Цикл з треку знято`);
         }else{
             queue.repeatMode = 1;
-            interaction.reply("Looped track");
+            embed.setTitle(`♾ Зациклено трек`);
         }
+        interaction.reply({embeds: [embed]});
     }
 }

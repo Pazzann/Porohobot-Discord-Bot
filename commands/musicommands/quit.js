@@ -16,8 +16,8 @@ module.exports = {
         queue.destroy();
         const embed = new MessageEmbed()
             .setColor('#ffa094')
-            .setTitle(`Допобачення!`)
-            .setDescription('Користуйтесь ще ще!');
+            .setTitle(`☎️⠀Допобачення!`)
+            .setDescription('Користуйтесь ще! Не вимагайте Порошенко чекати!');
 
         interaction.reply({embeds: [embed]});
     }

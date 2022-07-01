@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { QueryType } = require("discord-player")
 const {SlashCommandBuilder} = require("@discordjs/builders");
 
 
@@ -11,12 +10,18 @@ module.exports = {
         const queue = client.player.getQueue(interaction.guildId);
 
         if (!queue) return await interaction.reply("There is nothing playing now");
-        if( queue.repeatMode == 2 ){
+
+        const embed = new MessageEmbed()
+            .setColor('#d750ef')
+            .setDescription(`**Це не жарт...**`);
+
+        if (queue.repeatMode == 2) {
             queue.repeatMode = 0;
-            interaction.reply("Unlooped queue");
-        }else{
+            embed.setTitle(`♾ Цикл з черги знято`);
+        } else {
             queue.repeatMode = 2;
-            interaction.reply("Looped queue");
+            embed.setTitle(`♾ Зациклено чергу`);
         }
+        interaction.reply({embeds: [embed]});
     }
 }

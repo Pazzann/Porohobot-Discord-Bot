@@ -18,7 +18,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setColor('#a450a3')
             .setThumbnail(curr.thumbnail)
-            .setTitle(`Трек скіпнуто!`)
+            .setTitle(`⏭ Трек скіпнуто!`)
             .setDescription(curr.title);
 
         interaction.reply({embeds: [embed]});

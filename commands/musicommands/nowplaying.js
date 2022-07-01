@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { QueryType } = require("discord-player")
 const {SlashCommandBuilder} = require("@discordjs/builders");
 
 
@@ -13,6 +12,14 @@ module.exports = {
         if (!queue) return await interaction.reply("There is nothing playing now");
 
         const current = queue.current;
-        await interaction.reply(`Зараз грає: ${current.title} \n${current.author}`);
+
+        const embed = new MessageEmbed()
+            .setTitle(`🎵 Зараз грає:`)
+            .setDescription(`\`\`[${current.duration}]\`\` __${current.title}__\nby **${current.author}**`)
+            .setURL(current.url)
+            .setThumbnail(current.thumbnail)
+            .setColor('#ff9595');
+
+        await interaction.reply({embeds: [embed]});
     }
 }
