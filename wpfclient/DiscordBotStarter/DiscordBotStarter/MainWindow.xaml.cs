@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,41 +27,40 @@ namespace DiscordBotStarter
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object gg, RoutedEventArgs dfssdf)
         {
             //string path = Directory.GetCurrentDirectory();
-            string path = "C:\\Users\admin\\Desktop\\Porohobot - Discord - Bot";
+            string path = "C:\\Users\\admin\\Desktop\\Porohobot-Discord-Bot";
             path += "\\start.bat";
-            try
+            var processInfo = new ProcessStartInfo(path);
+            processInfo.CreateNoWindow = true;
+            processInfo.UseShellExecute = false;
+            processInfo.RedirectStandardError = true;
+            processInfo.RedirectStandardOutput = true;
+
+            var process = Process.Start(processInfo);
+
+            process.OutputDataReceived += (object sender, DataReceivedEventArgs e) =>
             {
-                //Process.Start(path + "\\start.bat");
-                var proc = new Process
-                {
-                    StartInfo = new ProcessStartInfo
-                    {
-                        FileName = "cmd.exe",
-                        Arguments = path,
-                        UseShellExecute = false,
-                        RedirectStandardOutput = true,
-                        CreateNoWindow = true
-                    }
-                };
+                    logs.Dispatcher.Invoke(()=> { logs.Content += e.Data + "\n"; });
+            };
+            
+                
+            process.BeginOutputReadLine();
 
-
-
-                 proc.Start();
-                while (!proc.StandardOutput.EndOfStream)
-                {
-                    logs.Content = proc.StandardOutput.ReadLine();
-                    // do something with line
-                }
-
-            }
-
-            catch (ArgumentNullException err)
+            process.ErrorDataReceived += (object sender, DataReceivedEventArgs e) =>
             {
-                logs.Content = err;
-            }
-            }
+                logs.Dispatcher.Invoke(() => { logs.Content += e.Data + "\n"; });
+            };
+            process.BeginErrorReadLine();
+
+            process.WaitForExit();
+
+            Console.WriteLine("ExitCode: {0}", process.ExitCode);
+            process.Close();
+
+
+
+        }
     }
 }

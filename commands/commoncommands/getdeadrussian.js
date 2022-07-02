@@ -20,6 +20,10 @@ module.exports = {
                 .setDescription('Якщо хочете, то додайте конкретне айді')
                 .setRequired(false)),
 	async execute(interaction) {
+
+        if(!interaction.channel.nsfw)
+            return interaction.reply("ONLY IN NSFW CHANNELS");
+
         let randId = Math.floor(Math.random() * images.length); 
         let Id = interaction.options.getInteger('id');
 

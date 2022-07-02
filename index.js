@@ -5,7 +5,6 @@ const {RegCommands} = require('./functions/CommandRegister');
 const {token} = require('./config.json');
 
 
-
 const client = new DiscordJS.Client({
     intents: [
         DiscordJS.Intents.FLAGS.GUILDS,
