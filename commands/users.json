@@ -4,12 +4,12 @@
     "userId": "643027447058792479",
     "porohobotCredits": 0,
     "DickGame": {
-      "userDickLength": -10,
-      "timesCalled": 1188,
-      "goodTries": 449,
-      "badTries": 739,
-      "totalGrowth": 671,
-      "totalDownGrade": -733
+      "userDickLength": -19,
+      "timesCalled": 1227,
+      "goodTries": 462,
+      "badTries": 765,
+      "totalGrowth": 689,
+      "totalDownGrade": -760
     }
   },
   {
@@ -88,6 +88,19 @@
       "badTries": 204,
       "totalGrowth": 187,
       "totalDownGrade": -182
+    }
+  },
+  {
+    "userName": "Klarulor#3400",
+    "userId": "664706046027235348",
+    "porohobotCredits": 0,
+    "DickGame": {
+      "userDickLength": 5,
+      "timesCalled": 0,
+      "goodTries": 0,
+      "badTries": 0,
+      "totalGrowth": 0,
+      "totalDownGrade": 0
     }
   }
 ]

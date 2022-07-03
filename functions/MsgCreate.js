@@ -6,6 +6,11 @@ module.exports.MsgReading = function(message)
     
     if(!message.author.bot)
     {
+        if (msgLow.includes("путин")||msgLow.includes("путін")){
+            message.reply({
+                content: 'Хуйло!'
+            });
+        }
 
         if (msgLow.includes("слава україні")||msgLow.includes("слава украине")){
             message.reply({
