@@ -2,8 +2,9 @@ const {SlashCommandBuilder} = require('@discordjs/builders');
 const {REST} = require('@discordjs/rest');
 const {Routes} = require('discord-api-types/v9');
 const {clientId, token} = require('./config.json');
-const Player = require('./music/playlist.json')
-const {MusicSlashCommandBuilder} = require('./functions/MusicCommandBuilder.js')
+const Player = require('./music/playlist.json');
+const {MusicSlashCommandBuilder} = require('./functions/MusicCommandBuilder.js');
+const { Permissions } = require('discord.js');
 
 
 const commands = [
@@ -57,6 +58,18 @@ const commands = [
     new SlashCommandBuilder()
         .setName('musicinfo')
         .setDescription('Допомога зі списком плейлістів'),
+    new SlashCommandBuilder()
+        .setName('addrss')
+        .setDescription('Додає слухач рсс до вашого серверу.')
+        .setDefaultMemberPermissions(Permissions.FLAGS.ADMINISTRATOR)
+        .addStringOption(option =>
+            option.setName('rsslink')
+                .setDescription('Лінк на рсс')
+                .setRequired(true))
+        .addChannelOption(option =>
+            option.setName("rsschannel")
+                .setDescription('Канал у якому буде поститься')
+                .setRequired(true)),
 
 ]
     .map(command => command.toJSON());
