@@ -5,9 +5,9 @@
     "porohobotCredits": 0,
     "DickGame": {
       "userDickLength": -19,
-      "timesCalled": 1227,
+      "timesCalled": 1228,
       "goodTries": 462,
-      "badTries": 765,
+      "badTries": 766,
       "totalGrowth": 689,
       "totalDownGrade": -760
     }
@@ -31,11 +31,11 @@
     "porohobotCredits": 0,
     "DickGame": {
       "userDickLength": 52,
-      "timesCalled": 150,
-      "goodTries": 67,
-      "badTries": 83,
-      "totalGrowth": 107,
-      "totalDownGrade": -77
+      "timesCalled": 152,
+      "goodTries": 68,
+      "badTries": 84,
+      "totalGrowth": 108,
+      "totalDownGrade": -78
     }
   },
   {
@@ -95,12 +95,12 @@
     "userId": "664706046027235348",
     "porohobotCredits": 0,
     "DickGame": {
-      "userDickLength": 5,
-      "timesCalled": 0,
-      "goodTries": 0,
-      "badTries": 0,
-      "totalGrowth": 0,
-      "totalDownGrade": 0
+      "userDickLength": -1,
+      "timesCalled": 79,
+      "goodTries": 29,
+      "badTries": 50,
+      "totalGrowth": 37,
+      "totalDownGrade": -43
     }
   }
 ]
