@@ -1,4 +1,3 @@
-
 // discord command listener
 
 const DiscordJS = require('./node_modules/discord.js');
@@ -6,9 +5,8 @@ const MsgCreate = require("./functions/MsgCreate.js")
 const {Player} = require('discord-player');
 const {RegCommands} = require('./functions/CommandRegister');
 const {token} = require('./config.json');
-const { parse } = require( 'node-html-parser' );
-const { MessageEmbed } = require('discord.js');
-
+const {parse} = require('node-html-parser');
+const {MessageEmbed} = require('discord.js');
 
 
 const client = new DiscordJS.Client({
@@ -27,7 +25,7 @@ client.player = new Player(client, {
 })
 const sources = ["commoncommands", "dickgamecommands", "musicommands", "newscommands"];
 const commands = new Map();
-for(let i = 0; i < sources.length; i++){
+for (let i = 0; i < sources.length; i++) {
     for (let [key, value] in RegCommands(commands, sources[i]).entries()) {
         commands.set(key, value);
     }
@@ -61,7 +59,6 @@ client.on("interactionCreate", async interaction => {
 client.login(token);
 
 
-
 //rss listener
 
 const RssFeedEmitter = require('rss-feed-emitter');
@@ -71,51 +68,85 @@ const feeder = new RssFeedEmitter();
 
 
 //load cache of feeder
-const pathRSS = path.join(__dirname);
-const rssLinks = JSON.parse(fs.readFileSync(pathRSS + '/commands/newscommands/rss.json', 'utf8'));
-for (let link of rssLinks){
+
+function regLinks() {
+    const pathRSS = path.join(__dirname);
+    const rssLinks = JSON.parse(fs.readFileSync(pathRSS + '/commands/newscommands/rss.json', 'utf8'));
+    for (let link of rssLinks) {
+        try {
+            feeder.add({
+                url: link,
+                refresh: 5000,
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    console.log("\x1b[32m", 'feeder loaded links succesfully');
+}
+
+setTimeout(regLinks, 6000);
+
+
+feeder.on('addrss', (url, interaction, rssLinks, pathRSS) => {
     try {
         feeder.add({
-            url: link,
+            url: url,
             refresh: 5000,
         });
-    }catch (err){
+        fs.writeFileSync(pathRSS + '/rss.json', JSON.stringify(rssLinks, null, 2));
+        interaction.reply("ВДАЛОСЯ")
+    } catch (err) {
         console.log(err);
+        interaction.reply("НЕВДАЛОСЯ")
     }
-
-}
-console.log('feeder loaded links succesfully')
-setTimeout(test, 6000);
-function test(){
-feeder.add({
-    url: 'http://152.67.92.49/?action=display&bridge=Telegram&username=novinach&format=Mrss',
-    refresh: 5000,
-
-});}
-
-feeder.on('addrss', (url) => {
-    feeder.add({
-        url: url,
-        refresh: 5000,
-    });
 })
 
 
-// Из ночных экспериментов:
-// див в дескрипте всего 1, в диве много насрано говна
+feeder.on('new-item', function (item) {
+    try {
+        if((Date.now() - item.pubdate) < 600000) {
+            const embed = new MessageEmbed()
+                .setColor("#" + Math.floor(Math.random() * 16777215).toString(16))
+                .setTitle(item.title.split('&#39;').join('\''))
+                .setURL(item.link)
+                .setImage(item?.enclosures[0]?.url ?? null)
+                .setFooter({text: String(item.pubdate.getHours() + ':' + item.pubdate.getMinutes()), iconURL: null})
+                .setAuthor({name: item.meta['rss:title']['#'], iconURL: null, url: item.meta['rss:link']['#']});
 
-feeder.on('new-item', function(item) {
+            const root = parse(item.description);
 
-    const embed = new MessageEmbed()
-        .setColor('#c2de67')
-        .setTitle('Test');
+            embed.setDescription(root
+                .getElementsByTagName('div')[0].innerHTML
+                .split('<br>').join('\n')
+                .split('&#39;').join('\'')
+                .split('&#33;').join('!')
+                .split('/b').join('b')
+                .split('<b>').join('')
+                .split('<i>').join('')
+                .split('/i').join('i')
+                .split('</a>').join('')
+                .split('href').map((itemStr, indexStr) => (indexStr / 2 != Math.floor(indexStr / 2)) ? '' : itemStr).join('')
+                .split('<i').map((itemEmj, indexEmj) => (indexEmj / 2 != Math.floor(indexEmj / 2)) ? itemEmj.split('>')[1] : itemEmj).join('')
+                .split('<a );">').join('')
+                .split('>').join('')
+            );
 
-    const root = parse(item.description);
-    try{
-        const channel = client.channels.cache.get('993456883572674599');
-        embed.setDescription( root.getElementsByTagName('div')[0].innerHTML );
-        channel.send({embeds: [embed]});
-    }catch (err){
+            const pathRSSChannels = path.join(__dirname);
+            const rssChannels = Array.from(JSON.parse(fs.readFileSync(pathRSSChannels + '/commands/newscommands/newsguilds.json', 'utf8')));
+
+            let rssMapChannels = new Map();
+            for (let value of rssChannels) {
+                rssMapChannels.set(value[0], value[1]);
+            }
+
+            let arr = rssMapChannels.get(item.meta.link);
+            for (let id of arr) {
+                const channel = client.channels.cache.get(id);
+                channel.send({embeds: [embed]});
+            }
+        }
+    } catch (err) {
         console.log(err);
     }
 
