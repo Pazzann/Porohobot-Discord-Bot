@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-
 const fs = require('node:fs');
 const path = require("node:path");
 const {User} = require("../../classes/User");

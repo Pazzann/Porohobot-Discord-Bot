@@ -2,10 +2,8 @@
 //discord part
 const Discord = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
-
 const fs = require('node:fs');
 const path = require('node:path')
-
 const imagesPath = path.join(__dirname, 'rusimages');
 const images = fs.readdirSync(imagesPath).filter(file => file.endsWith('.jpg'));
 

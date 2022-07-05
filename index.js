@@ -25,19 +25,12 @@ client.player = new Player(client, {
         highWaterMark: 1 << 25
     }
 })
-
+const sources = ["commoncommands", "dickgamecommands", "musicommands", "newscommands"];
 const commands = new Map();
-for (let [key, value] in RegCommands(commands, "commoncommands").entries()) {
-    commands.set(key, value);
-}
-for (let [key, value] in RegCommands(commands, "dickgamecommands").entries()) {
-    commands.set(key, value);
-}
-for (let [key, value] in RegCommands(commands, "musicommands").entries()) {
-    commands.set(key, value);
-}
-for (let [key, value] in RegCommands(commands, "newscommands").entries()) {
-    commands.set(key, value);
+for(let i = 0; i < sources.length; i++){
+    for (let [key, value] in RegCommands(commands, sources[i]).entries()) {
+        commands.set(key, value);
+    }
 }
 
 //tells that bot is started
@@ -47,7 +40,7 @@ client.on('ready', () => {
 
 
 //func that replies to each msg of discord if includes ukrainian cheer
-client.on('messageCreate', (message) => MsgCreate.MsgReading(message));
+client.on('messageCreate', MsgCreate.MsgReading);
 
 //replies to slash commands
 client.on("interactionCreate", async interaction => {
@@ -92,7 +85,7 @@ for (let link of rssLinks){
 
 }
 console.log('feeder loaded links succesfully')
-setTimeout(()=>{test()}, 6000);
+setTimeout(test, 6000);
 function test(){
 feeder.add({
     url: 'http://152.67.92.49/?action=display&bridge=Telegram&username=novinach&format=Mrss',

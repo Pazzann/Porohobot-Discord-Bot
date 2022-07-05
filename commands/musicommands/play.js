@@ -16,9 +16,8 @@ function createEmbed(playlist, actualplaylist) {
 
 function getUrlFromArrayByName(arr, name) {
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i].playlistName == name) {
+        if (arr[i].playlistName == name)
             return arr[i];
-        }
     }
     return "NO MATCHES";
 }
@@ -26,8 +25,7 @@ function getUrlFromArrayByName(arr, name) {
 module.exports = {
     data: MusicSlashCommandBuilder(),
     async execute(interaction, client) {
-        if (!interaction.member.voice.channel)
-            return interaction.reply("YOU MUST BE IN VOICE CHANNEL");
+        if (!interaction.member.voice.channel) return interaction.reply("YOU MUST BE IN VOICE CHANNEL");
 
         const queue = await client.player.createQueue(interaction.guild);
         if (!queue.connection) await queue.connect(interaction.member.voice.channel);
@@ -39,8 +37,7 @@ module.exports = {
             requestedBy: interaction.user,
             searchEngine: QueryType.YOUTUBE_PLAYLIST
         })
-        if (result.tracks.length === 0)
-            return interaction.reply("NO RESULTS");
+        if (result.tracks.length === 0) return interaction.reply("NO RESULTS");
 
         const playlist = result.playlist;
         await queue.addTracks(result.tracks);
