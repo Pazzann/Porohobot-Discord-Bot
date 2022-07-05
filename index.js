@@ -100,6 +100,10 @@ feeder.on('addrss', (url) => {
     });
 })
 
+
+// Из ночных экспериментов:
+// див в дескрипте всего 1, в диве много насрано говна
+
 feeder.on('new-item', function(item) {
 
     const embed = new MessageEmbed()
@@ -109,7 +113,6 @@ feeder.on('new-item', function(item) {
     const root = parse(item.description);
     try{
         const channel = client.channels.cache.get('993456883572674599');
-
         embed.setDescription( root.getElementsByTagName('div')[0].innerHTML );
         channel.send({embeds: [embed]});
     }catch (err){
