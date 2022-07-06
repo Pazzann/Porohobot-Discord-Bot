@@ -2,25 +2,55 @@
   [
     "http://152.67.92.49/?action=display&bridge=Telegram&username=novinach&format=Mrss",
     [
-      "993456883572674599"
+      [
+        "993456883572674599",
+        false
+      ]
     ]
   ],
   [
     "http://152.67.92.49/?action=display&bridge=Telegram&username=kvadratnykP&format=Mrss",
     [
-      "993456883572674599"
+      [
+        "993456883572674599",
+        false
+      ]
     ]
   ],
   [
     "http://152.67.92.49/?action=display&bridge=Telegram&username=vladislav_youtube&format=Mrss",
     [
-      "993456883572674599"
+      [
+        "993456883572674599",
+        false
+      ]
     ]
   ],
   [
     "http://152.67.92.49/?action=display&bridge=Telegram&username=qizdabol&format=Mrss",
     [
-      "993456883572674599"
+      [
+        "993456883572674599",
+        false
+      ]
+    ]
+  ],
+  [
+    "http://152.67.92.49/?action=display&bridge=Telegram&username=GalicianCube&format=Mrss",
+    [
+      [
+        "513113783946706964",
+        true
+      ]
+    ]
+  ],
+  [
+    "http://152.67.92.49/?action=display&bridge=Telegram&username=bfgshizA&format=Mrss",
+    [
+      [
+        "933767612830220358",
+        true
+      ]
     ]
   ]
 ]
