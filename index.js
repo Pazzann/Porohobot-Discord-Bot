@@ -151,8 +151,7 @@ feeder.on('new-item', function (item) {
             for (let id of arr) {
                 const channel = client.channels.cache.get(id[0]);
                 if (id[1]) {
-                    channel.send("@everyone");
-                    channel.send({embeds: [embed]});
+                    channel.send({content: "@everyone", embeds: [embed]});
                 } else {
                     channel.send({embeds: [embed]});
                 }
