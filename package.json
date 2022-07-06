@@ -16,5 +16,8 @@
         "node-html-parser": "^5.3.3",
         "rss-feed-emitter": "^3.2.3",
         "xml-parser": "^1.2.1"
+    },
+    "devDependencies": {
+        "eslint": "^8.19.0"
     }
 }

@@ -108,29 +108,33 @@ feeder.on('new-item', function (item) {
         if((Date.now() - item.pubdate) < 1800000) {
             const embed = new MessageEmbed()
                 .setColor("#" + Math.floor(Math.random() * 16777215).toString(16))
-                .setTitle(item.title.split('&#39;').join('\''))
+                .setTitle(item.title
+                    .split('&#39;').join('\'')
+                    .split('&quot;').join('"')
+                    .split('&#33;').join('!')
+                    .split('&quot;').join('"')
+                    .split('&#036;').join('$')
+                )
                 .setURL(item.link)
                 .setImage(item?.enclosures[0]?.url ?? null)
                 .setFooter({text: String(item.pubdate.getHours() + ':' + item.pubdate.getMinutes()), iconURL: null})
                 .setAuthor({name: item.meta['rss:title']['#'], iconURL: null, url: item.meta['rss:link']['#']});
 
             const root = parse(item.description);
-
-            embed.setDescription(root
-                .getElementsByTagName('div')[0].innerHTML
+            let divcont = root.getElementsByTagName('div')[0].innerHTML
                 .split('<br>').join('\n')
+                .split('/b').join('b')
+                .split('<b>').join('**')
                 .split('&#39;').join('\'')
                 .split('&#33;').join('!')
-                .split('/b').join('b')
-                .split('<b>').join('')
-                .split('<i>').join('')
-                .split('/i').join('i')
-                .split('</a>').join('')
-                .split('href').map((itemStr, indexStr) => (indexStr / 2 != Math.floor(indexStr / 2)) ? '' : itemStr).join('')
-                .split('<i').map((itemEmj, indexEmj) => (indexEmj / 2 != Math.floor(indexEmj / 2)) ? itemEmj.split('>')[1] : itemEmj).join('')
-                .split('<a );">').join('')
-                .split('>').join('')
-            );
+                .split('&quot;').join('"')
+                .split('&#036;').join('$')
+            divcont = parse(divcont);
+            let a = '';
+            for (let node of divcont.childNodes){
+                a += node.innerHTML ?? node._rawText;
+            }
+            embed.setDescription(a);
 
             const pathRSSChannels = path.join(__dirname);
             const rssChannels = Array.from(JSON.parse(fs.readFileSync(pathRSSChannels + '/commands/newscommands/newsguilds.json', 'utf8')));
