@@ -105,7 +105,7 @@ feeder.on('addrss', (url, interaction, rssLinks, pathRSS) => {
 
 feeder.on('new-item', function (item) {
     try {
-        if((Date.now() - item.pubdate) < 1800000) {
+        if ((Date.now() - item.pubdate) < 1800000) {
             const embed = new MessageEmbed()
                 .setColor("#" + Math.floor(Math.random() * 16777215).toString(16))
                 .setTitle('📄 | ' + item.title
@@ -130,13 +130,13 @@ feeder.on('new-item', function (item) {
                 .split('&#33;').join('!')
                 .split('&quot;').join('"')
                 .split('&#036;').join('$')
-            if (divcont !== undefined){
-            divcont = parse(divcont);
-            
-            for (let node of divcont.childNodes){
-                a += node.innerHTML ?? node._rawText;
+            if (divcont !== undefined) {
+                divcont = parse(divcont);
+
+                for (let node of divcont.childNodes) {
+                    a += node.innerHTML ?? node._rawText;
+                }
             }
-        }
             embed.setDescription(a ?? null);
 
             const pathRSSChannels = path.join(__dirname);
@@ -150,10 +150,10 @@ feeder.on('new-item', function (item) {
             let arr = rssMapChannels.get(item.meta.link);
             for (let id of arr) {
                 const channel = client.channels.cache.get(id[0]);
-                if (id[1]){
+                if (id[1]) {
                     channel.send("@everyone");
                     channel.send({embeds: [embed]});
-                }else{
+                } else {
                     channel.send({embeds: [embed]});
                 }
 
