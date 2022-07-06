@@ -108,7 +108,7 @@ feeder.on('new-item', function (item) {
         if((Date.now() - item.pubdate) < 1800000) {
             const embed = new MessageEmbed()
                 .setColor("#" + Math.floor(Math.random() * 16777215).toString(16))
-                .setTitle(item.title
+                .setTitle('📄 | ' + item.title
                     .split('&#39;').join('\'')
                     .split('&quot;').join('"')
                     .split('&#33;').join('!')
