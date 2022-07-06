@@ -121,7 +121,8 @@ feeder.on('new-item', function (item) {
                 .setAuthor({name: item.meta['rss:title']['#'], iconURL: null, url: item.meta['rss:link']['#']});
 
             const root = parse(item.description);
-            let divcont = root.getElementsByTagName('div')[0].innerHTML
+            let a = '';
+            let divcont = root.getElementsByTagName('div')[0]?.innerHTML
                 .split('<br>').join('\n')
                 .split('/b').join('b')
                 .split('<b>').join('**')
@@ -129,12 +130,14 @@ feeder.on('new-item', function (item) {
                 .split('&#33;').join('!')
                 .split('&quot;').join('"')
                 .split('&#036;').join('$')
+            if (divcont !== undefined){
             divcont = parse(divcont);
-            let a = '';
+            
             for (let node of divcont.childNodes){
                 a += node.innerHTML ?? node._rawText;
             }
-            embed.setDescription(a);
+        }
+            embed.setDescription(a ?? null);
 
             const pathRSSChannels = path.join(__dirname);
             const rssChannels = Array.from(JSON.parse(fs.readFileSync(pathRSSChannels + '/commands/newscommands/newsguilds.json', 'utf8')));
