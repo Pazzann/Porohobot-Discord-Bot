@@ -105,7 +105,7 @@ feeder.on('addrss', (url, interaction, rssLinks, pathRSS) => {
 
 feeder.on('new-item', function (item) {
     try {
-        if((Date.now() - item.pubdate) < 600000) {
+        if((Date.now() - item.pubdate) < 1800000) {
             const embed = new MessageEmbed()
                 .setColor("#" + Math.floor(Math.random() * 16777215).toString(16))
                 .setTitle(item.title.split('&#39;').join('\''))

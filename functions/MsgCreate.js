@@ -33,11 +33,7 @@ module.exports.MsgReading = function(message)
         {
             message.react('🤡')
         }
-        //bfg
-        if(message.author.id == "390561515054563328")
-        {
-            message.react('💪')
-        }
+
         //leo
         if(message.author.id == "690911579532689429")
         {
