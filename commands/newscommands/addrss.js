@@ -18,6 +18,10 @@ module.exports ={
         .addChannelOption(option =>
             option.setName("rsschannel")
                 .setDescription('Канал у якому буде поститься')
+                .setRequired(true))
+        .addBooleanOption(option =>
+            option.setName("everyone")
+                .setDescription('Чи відправляти з евріван?')
                 .setRequired(true)),
     async execute(interaction, client, feeder){
 
@@ -35,6 +39,7 @@ module.exports ={
 
         const rssLink = interaction.options.getString('rsslink');
         const channel = interaction.options.getChannel('rsschannel');
+        const everyone = interaction.options.getBoolean('everyone');
 
         if(!rssLinks.includes(rssLink)){
             rssLinks.push(rssLink);
@@ -46,12 +51,12 @@ module.exports ={
         if(rssMapChannels.has(rssLink)){
             let arrChannels = rssMapChannels.get(rssLink)
             if(!arrChannels.includes(channel.id)){
-                arrChannels.push(channel.id);
+                arrChannels.push([channel.id, everyone]);
                 rssMapChannels.set(rssLink, arrChannels);
             }
             fs.writeFileSync(pathRSSChannels + '/newsguilds.json', JSON.stringify(rssMapChannels, null, 2));
         }else{
-            rssMapChannels.set(rssLink, [channel.id]);
+            rssMapChannels.set(rssLink, [[channel.id, everyone]]);
         }
         let arr = [];
         for (let value of rssMapChannels.entries()){

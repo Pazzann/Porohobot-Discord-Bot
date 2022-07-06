@@ -69,6 +69,10 @@ const commands = [
         .addChannelOption(option =>
             option.setName("rsschannel")
                 .setDescription('Канал у якому буде поститься')
+                .setRequired(true))
+        .addBooleanOption(option =>
+            option.setName("everyone")
+                .setDescription('Чи відправляти з евріван?')
                 .setRequired(true)),
 
 ]

@@ -146,8 +146,14 @@ feeder.on('new-item', function (item) {
 
             let arr = rssMapChannels.get(item.meta.link);
             for (let id of arr) {
-                const channel = client.channels.cache.get(id);
-                channel.send({embeds: [embed]});
+                const channel = client.channels.cache.get(id[0]);
+                if (id[1]){
+                    channel.send("@everyone");
+                    channel.send({embeds: [embed]});
+                }else{
+                    channel.send({embeds: [embed]});
+                }
+
             }
         }
     } catch (err) {
