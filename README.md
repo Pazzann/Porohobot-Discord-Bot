@@ -2,9 +2,12 @@
 Fully Ukrainian Discord bot
 
 
-Total functionality:
+To add it: https://discord.com/api/oauth2/authorize?client_id=989156095316590602&permissions=278672849984&scope=bot%20applications.commands
 
-​
+
+
+
+Total functionality:
 
 ​
 🧾 Стандартні команди
@@ -52,4 +55,4 @@ Total functionality:
 
 
 
-To add it: https://discord.com/api/oauth2/authorize?client_id=989156095316590602&permissions=278672849984&scope=bot%20applications.commands
+
