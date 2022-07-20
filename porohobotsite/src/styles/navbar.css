@@ -1,34 +1,32 @@
-#dashboard {
-
-}
-
-#loginbutton {
-
-}
 
 #loginbutton img {
     width: 30px;
 }
 
 .navbarbutton {
-    margin-top: 15px;
     height: 60px;
     margin-right: 40px;
     width: 200px;
     font-size: 36px;
-    color: #406AFF;
-    border: none;
+    color: #DBFF00;
     border-radius: 10px;
+    text-decoration: none;
+    background-color: #406AFF;
+    border: solid 5px #DBFF00;
 }
 
 .navbarbutton:hover {
     background-color: #DBFF00;
     cursor: pointer;
+    border-color: #406AFF;
+    color: #406AFF;
+
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .useravatar {
@@ -41,17 +39,16 @@
     font-size: 36px;
     margin-left: 5px;
     margin-right: 10px;
-    margin-top: 5px;
 }
 
 .user {
-    margin-top: 10px;
     height: 60px;
     background-color: #406AFF;
     border: solid 5px #DBFF00;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .logout:hover{

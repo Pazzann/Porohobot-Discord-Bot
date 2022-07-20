@@ -9,5 +9,6 @@
         "ecmaVersion": "latest"
     },
     "rules": {
+        "no-restricted-globals": 0
     }
 }

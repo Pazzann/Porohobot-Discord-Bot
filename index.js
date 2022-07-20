@@ -147,7 +147,7 @@ const fs = require("node:fs");
 //                 rssMapChannels.set(value[0], value[1]);
 //             }
 //
-//             let arr = rssMapChannels.get(item.meta.link);
+//             let arr = Array.from(rssMapChannels.get(item.meta.link));
 //             for (let id of arr) {
 //                 const channel = client.channels.cache.get(id[0]);
 //                 if (id[1]) {
@@ -175,11 +175,33 @@ const app = express();
 const sitePath = path.join(__dirname, "/porohobotSiteFront");
 const jsonParser = express.json();
 
+const DiscordOauth2 = require("discord-oauth2");
+const oauth = new DiscordOauth2({
+    clientId: clientId,
+    clientSecret: clientSecret,
+    redirectUri: "http://localhost:1234/api/callback",
+});
+
 const fetch = require('node-fetch');
 const { url } = require('inspector');
 const { URLSearchParams } = require('url');
 
+let session = require('express-session')
+const {request, response} = require("express");
+const cors = require("cors");
 
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false, sameSite: true, httpOnly: false}
+}))
+
+app.use(cors({
+    origin: ["http://localhost:3000","http://localhost:1234"],
+    optionsSuccessStatus: 200,
+    credentials: true
+}))
 
 
 app.use(express.static(sitePath));
@@ -188,31 +210,27 @@ app.use('/index.html', function (request, response) {
     response.redirect('/');
 });
 
+app.get('/api/user', (request, response) =>{
+    response.json(request.session.user);
+})
+app.get('/api/logout', (request, response) =>{
+    request.session.destroy();
+    response.end("200");
+})
 
-app.post('/auth', jsonParser, function (request, response) {
-    if(!request.body) return response.sendStatus(400);
-    const params = new URLSearchParams();
-    params.append('client_id', clientId);
-    params.append('client_secret', clientSecret);
-    params.append('grant_type', 'authorization_code');
-    params.append('code', request.body.code);
-    params.append('redirect_uri', "http://localhost:3000/index.html");
-
-    fetch('https://discord.com/api/oauth2/token', {
-        method: 'post',
-        body: params,
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
-    }).then(r => r.json()).then(Response => {
-        fetch("https://discord.com/api/users/@me", {
-            method: 'get',
-            body: null,
-            headers:{
-                'Authorization': `Bearer ${Response.access_token}`
-            }
-        }).then(r => r.json()).then(UserResponse => {
-            response.json(UserResponse); // отправляем пришедший ответ обратно
-        });
+app.get('/api/callback', jsonParser, async function (request, response) {
+    let token = await oauth.tokenRequest({
+        // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
+        code: request.query['code'],
+        grantType: "authorization_code",
+        scope: ["identify", "guilds"],
     });
+
+    let user = await oauth.getUser(token.access_token);
+    request.session.user = user;
+    response.redirect('http://localhost:3000/');
+    console.log(user)
+
 });
 
 app.use('/', function (request, response) {
@@ -222,4 +240,4 @@ app.use('/', function (request, response) {
 
 
 
-app.listen(3000);
+app.listen(1234);
