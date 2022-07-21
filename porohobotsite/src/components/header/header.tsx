@@ -1,7 +1,10 @@
 import React, {Fragment, useEffect, useState} from "react";
 import {useCookies} from "react-cookie";
-import discordIcon from '../img/discord-icon.svg';
+import discordIcon from '../../img/discord-icon.svg';
 import {NavLink} from "react-router-dom";
+import {BackBut} from "./components/backBut";
+import {Route, Routes} from "react-router";
+import {DashboardBut} from "./components/dashboardBut";
 
 
 export function Header() {
@@ -39,7 +42,10 @@ export function Header() {
                 </div>
                 <nav className="navbar" id="navbar">
                     {user ? <Fragment>
-                        <NavLink to="/dashboard" id="dashboard" className="navbarbutton main">DASHBOARD</NavLink>
+                        <Routes>
+                            <Route path="/" element={<DashboardBut />}></Route>
+                            <Route path="/dashboard" element={<BackBut />}></Route>
+                        </Routes>
                         <div className="user logout" id="logoutdiv" onClick={logout}>
                             <div className="main username">{user.username}</div>
                             <img className="useravatar"

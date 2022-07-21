@@ -1,12 +1,9 @@
-import headerImg from "../img/Header.jpg";
 import React, {Fragment} from "react";
 
 export function Home() {
     return (
         <Fragment>
-            <section>
-                <img className="headerimg" src={headerImg}/>
-            </section>
+
 
 
             <main>

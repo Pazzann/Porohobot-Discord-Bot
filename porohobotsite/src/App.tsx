@@ -5,11 +5,14 @@ import {Route, Routes} from "react-router";
 import {NavLink} from "react-router-dom";
 
 //components
-import {Header} from "./components/header";
+import {Header} from "./components/header/header";
+import {HomeAside} from "./components/homeAside";
 
 //pages
 import {Home} from "./pages/home";
 import {Dashboard} from "./pages/dashboard";
+import {DashboardAside} from "./components/dashboardAside";
+
 
 
 function App() {
@@ -24,20 +27,25 @@ function App() {
         <div className="App">
 
             <Header/>
-            <div className="content">
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
-                    <Route path="/dashboard" element={<Dashboard />}></Route>
-                </Routes>
-
-
-                <footer>
-                    <div className="bot-description">
-                        <p>PETst</p>
-                    </div>
-                </footer>
-
+            <div className="pageContent">
+                <aside className="aside">
+                    <Routes>
+                        <Route path="/" element={<HomeAside />}></Route>
+                        <Route path="/dashboard" element={<DashboardAside />}></Route>
+                    </Routes>
+                </aside>
+                <div className="content">
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/dashboard" element={<Dashboard />}></Route>
+                    </Routes>
+                </div>
             </div>
+            <footer>
+                <div className="footerBottom">
+                    Test
+                </div>
+            </footer>
         </div>
     );
 }

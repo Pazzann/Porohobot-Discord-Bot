@@ -2,21 +2,24 @@
 #loginbutton img {
     width: 30px;
 }
+#loginbutton{
+    padding-bottom: 50px;
+}
 
 .navbarbutton {
     height: 60px;
     margin-right: 40px;
     width: 200px;
-    font-size: 36px;
+    font-size: 40px;
     color: #DBFF00;
     border-radius: 10px;
     text-decoration: none;
-    background-color: #406AFF;
+    background-color: #afc3ff;
     border: solid 5px #DBFF00;
 }
 
 .navbarbutton:hover {
-    background-color: #DBFF00;
+    background-color: #f2ffba;
     cursor: pointer;
     border-color: #406AFF;
     color: #406AFF;
@@ -49,6 +52,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-right: 40px;
 }
 
 .logout:hover{
