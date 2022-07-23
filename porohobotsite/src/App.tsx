@@ -27,14 +27,14 @@ function App() {
         <div className="App">
 
             <Header/>
-            <div className="pageContent">
+            <div className="content">
                 <aside className="aside">
                     <Routes>
                         <Route path="/" element={<HomeAside />}></Route>
                         <Route path="/dashboard" element={<DashboardAside />}></Route>
                     </Routes>
                 </aside>
-                <div className="content">
+                <div className="pageContent">
                     <Routes>
                         <Route path="/" element={<Home />}></Route>
                         <Route path="/dashboard" element={<Dashboard />}></Route>

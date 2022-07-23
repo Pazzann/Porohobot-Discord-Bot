@@ -1,0 +1,25 @@
+@import url("paragraph.css");
+
+.textImg{
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+div .textImg{
+    margin-bottom: 150px;
+}
+
+.img_{
+    width: 40%;
+    height: 40%;
+}
+
+.text_{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}

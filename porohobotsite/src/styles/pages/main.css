@@ -1,0 +1,13 @@
+@import url("./home.css");
+@import url("./dashboard.css");
+@import url("styles/textImg.css");
+
+
+.pageContent{
+    width: 80%;
+    background: gray;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

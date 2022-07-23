@@ -9,7 +9,7 @@ header {
     display: flex;
     justify-content: space-between;
     background-color: #443333;
-
+    z-index: 1;
 }
 
 .namebot {
