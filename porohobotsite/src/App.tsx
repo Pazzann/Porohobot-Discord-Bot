@@ -28,12 +28,12 @@ function App() {
 
             <Header/>
             <div className="content">
-                <aside className="aside">
-                    <Routes>
-                        <Route path="/" element={<HomeAside />}></Route>
-                        <Route path="/dashboard" element={<DashboardAside />}></Route>
-                    </Routes>
-                </aside>
+                {/*<aside className="aside">*/}
+                {/*    <Routes>*/}
+                {/*        <Route path="/" element={<HomeAside />}></Route>*/}
+                {/*        <Route path="/dashboard" element={<DashboardAside />}></Route>*/}
+                {/*    </Routes>*/}
+                {/*</aside>*/}
                 <div className="pageContent">
                     <Routes>
                         <Route path="/" element={<Home />}></Route>

@@ -1,0 +1,50 @@
+.guildTable{
+    border-spacing: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.columnUnJoined{
+    background: #8a0101;
+}
+
+.columnJoined{
+    background: #004600;
+}
+
+.column{
+    position: relative;
+    width: 192px;
+    height: 192px;
+    padding: 0;
+    color: white;
+
+    border-radius: 30px;
+}
+
+
+.column:hover{
+    transition-property: color;
+    transition-duration: 2s;
+    transition-timing-function: ease-in;
+    background: yellow;
+}
+/*.column:hover .guildimg {*/
+/*    transform: translateY(10px);*/
+
+/*}*/
+
+.guildimg{
+    position: absolute;
+    right: 40px;
+    top: 40px;
+    border-radius: 36px;
+}
+
+.guildtext{
+    width: 128px;
+    height: 67px;
+    position: absolute;
+    top: 125px;
+    left: 25px
+}

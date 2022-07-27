@@ -10,13 +10,14 @@ import {DashboardBut} from "./components/dashboardBut";
 export function Header() {
     const [cookies, setCookie, removeCookie] = useCookies();
     const [user, setUser] = useState<any>(null);
+    let userGuilds: any;
     useEffect(() => {
-        console.log(cookies);
         (async () => {
             if (cookies["connect.sid"]) {
                 let request = await fetch('http://localhost:1234/api/user', {credentials: "include"});
                 if (request.ok) {
-                    setUser(await request.json());
+                    const data = await request.json();
+                    setUser(data);
                 }
             }
         })();
@@ -41,21 +42,24 @@ export function Header() {
                     </div>
                 </div>
                 <nav className="navbar" id="navbar">
-                    {user ? <Fragment>
-                        <Routes>
-                            <Route path="/" element={<DashboardBut />}></Route>
-                            <Route path="/dashboard" element={<BackBut />}></Route>
-                        </Routes>
-                        <div className="user logout" id="logoutdiv" onClick={logout}>
-                            <div className="main username">{user.username}</div>
-                            <img className="useravatar"
-                                 src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=60`}/></div>
-                    </Fragment> : <Fragment>
-                        <button id="loginbutton" className="navbarbutton main"
-                                onClick={() => location.href = "https://discord.com/api/oauth2/authorize?client_id=989156095316590602&redirect_uri=http%3A%2F%2Flocalhost%3A1234%2Fapi%2Fcallback&response_type=code&scope=identify"}>
-                            <img src={discordIcon}/>LOGIN
-                        </button>
-                    </Fragment>}
+                    {user ?
+                        <Fragment>
+                            <Routes>
+                                <Route path="/" element={<DashboardBut/>}></Route>
+                                <Route path="/dashboard" element={<BackBut/>}></Route>
+                            </Routes>
+                            <div className="user logout" id="logoutdiv" onClick={logout}>
+                                <div className="main username">{user.username}</div>
+                                <img className="useravatar"
+                                     src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=60`}/>
+                            </div>
+                        </Fragment> :
+                        <Fragment>
+                            <button id="loginbutton" className="navbarbutton main"
+                                    onClick={() => location.href = "https://discord.com/api/oauth2/authorize?client_id=989156095316590602&redirect_uri=http%3A%2F%2Flocalhost%3A1234%2Fapi%2Fcallback&response_type=code&scope=identify%20email%20guilds"}>
+                                <img src={discordIcon}/>LOGIN
+                            </button>
+                        </Fragment>}
                 </nav>
             </header>
         </Fragment>

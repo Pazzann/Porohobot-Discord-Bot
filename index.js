@@ -1,64 +1,64 @@
 // // discord command listener
-//
-// const DiscordJS = require('./node_modules/discord.js');
-// const MsgCreate = require("./functions/MsgCreate.js")
-// const {Player} = require('discord-player');
-// const {RegCommands} = require('./functions/CommandRegister');
+
+const DiscordJS = require('./node_modules/discord.js');
+const MsgCreate = require("./functions/MsgCreate.js")
+const {Player} = require('discord-player');
+const {RegCommands} = require('./functions/CommandRegister');
 const {token, clientId, clientSecret} = require('./config.json');
-// const {parse} = require('node-html-parser');
-// const {MessageEmbed} = require('discord.js');
-//
-//
-// const client = new DiscordJS.Client({
-//     intents: [
-//         DiscordJS.Intents.FLAGS.GUILDS,
-//         DiscordJS.Intents.FLAGS.GUILD_MESSAGES,
-//         DiscordJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
-//         DiscordJS.Intents.FLAGS.GUILD_VOICE_STATES
-//     ]
-// });
-// client.player = new Player(client, {
-//     ytdlOptions: {
-//         quality: "highestaudio",
-//         highWaterMark: 1 << 25
-//     }
-// })
-// const sources = ["commoncommands", "dickgamecommands", "musicommands", "newscommands"];
-// const commands = new Map();
-// for (let i = 0; i < sources.length; i++) {
-//     for (let [key, value] in RegCommands(commands, sources[i]).entries()) {
-//         commands.set(key, value);
-//     }
-// }
-//
-// //tells that bot is started
-// client.on('ready', () => {
-//     console.log("\x1b[31m", 'Порохобот has started!');
-// });
-//
-//
-// //func that replies to each msg of discord if includes ukrainian cheer
-// client.on('messageCreate', MsgCreate.MsgReading);
-//
-// //replies to slash commands
-// client.on("interactionCreate", async interaction => {
-//
-//     if (!interaction.isCommand()) return;
-//
-//     const command = commands.get(interaction.commandName);
-//     if (!command) return interaction.reply("Try another command");
-//
-//     try {
-//         await command.execute(interaction, client, feeder);
-//     } catch (error) {
-//         console.error(error);
-//         await interaction.reply({content: 'There was an error while executing this command!', ephemeral: true});
-//     }
-// });
-//
-// client.login(token);
-//
-//
+const {parse} = require('node-html-parser');
+const {MessageEmbed} = require('discord.js');
+
+
+const client = new DiscordJS.Client({
+    intents: [
+        DiscordJS.Intents.FLAGS.GUILDS,
+        DiscordJS.Intents.FLAGS.GUILD_MESSAGES,
+        DiscordJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+        DiscordJS.Intents.FLAGS.GUILD_VOICE_STATES
+    ]
+});
+client.player = new Player(client, {
+    ytdlOptions: {
+        quality: "highestaudio",
+        highWaterMark: 1 << 25
+    }
+})
+const sources = ["commoncommands", "dickgamecommands", "musicommands", "newscommands"];
+const commands = new Map();
+for (let i = 0; i < sources.length; i++) {
+    for (let [key, value] in RegCommands(commands, sources[i]).entries()) {
+        commands.set(key, value);
+    }
+}
+
+//tells that bot is started
+client.on('ready', () => {
+    console.log("\x1b[31m", 'Порохобот has started!');
+});
+
+
+//func that replies to each msg of discord if includes ukrainian cheer
+client.on('messageCreate', MsgCreate.MsgReading);
+
+//replies to slash commands
+client.on("interactionCreate", async interaction => {
+
+    if (!interaction.isCommand()) return;
+
+    const command = commands.get(interaction.commandName);
+    if (!command) return interaction.reply("Try another command");
+
+    try {
+        await command.execute(interaction, client, feeder);
+    } catch (error) {
+        console.error(error);
+        await interaction.reply({content: 'There was an error while executing this command!', ephemeral: true});
+    }
+});
+
+client.login(token);
+
+
 // //rss listener
 //
 // const RssFeedEmitter = require('rss-feed-emitter');
@@ -175,6 +175,9 @@ const app = express();
 const sitePath = path.join(__dirname, "/porohobotSiteFront");
 const jsonParser = express.json();
 
+const {genPermissions, genBitfield,} = require("./functions/Permissions");
+
+
 const DiscordOauth2 = require("discord-oauth2");
 const oauth = new DiscordOauth2({
     clientId: clientId,
@@ -183,22 +186,21 @@ const oauth = new DiscordOauth2({
 });
 
 const fetch = require('node-fetch');
-const { url } = require('inspector');
-const { URLSearchParams } = require('url');
+const {url} = require('inspector');
+const {URLSearchParams} = require('url');
 
-let session = require('express-session')
-const {request, response} = require("express");
+let session = require('express-session');
 const cors = require("cors");
 
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false, sameSite: true, httpOnly: false}
+    cookie: {secure: false, sameSite: true, httpOnly: false}
 }))
 
 app.use(cors({
-    origin: ["http://localhost:3000","http://localhost:1234"],
+    origin: ["http://localhost:3000", "http://localhost:1234"],
     optionsSuccessStatus: 200,
     credentials: true
 }))
@@ -210,27 +212,51 @@ app.use('/index.html', function (request, response) {
     response.redirect('/');
 });
 
-app.get('/api/user', (request, response) =>{
+app.get('/api/user', (request, response) => {
     response.json(request.session.user);
-})
-app.get('/api/logout', (request, response) =>{
+});
+
+app.get('/api/guilds', (request, response) => {
+    response.json(request.session.guilds);
+});
+
+app.get('/api/logout', (request, response) => {
     request.session.destroy();
     response.end("200");
-})
+});
 
 app.get('/api/callback', jsonParser, async function (request, response) {
     let token = await oauth.tokenRequest({
         // clientId, clientSecret and redirectUri are omitted, as they were already set on the class constructor
         code: request.query['code'],
         grantType: "authorization_code",
-        scope: ["identify", "guilds"],
+        scope: ["identify", "guilds", "email"],
     });
+    let user;
+    let guilds;
+    try {
+        user = await oauth.getUser(token.access_token);
+        guilds = await oauth.getUserGuilds(token.access_token);
+        let ownGuilds = [];
+        for (let guild of guilds) {
+            let permissions = genPermissions(guild.permissions);
+            let id = guild.id;
+            if (permissions.includes("ADMINISTRATOR")) {
+                (client.guilds.cache.has(id)) ?
+                    ownGuilds.push([guild, 1])
+                        :
+                    ownGuilds.push([guild, 0]);
+            }
+        }
+        guilds = ownGuilds.concat();
+    } catch (err) {
+        console.log(err);
+    }
 
-    let user = await oauth.getUser(token.access_token);
     request.session.user = user;
+    request.session.guilds = guilds;
+    request.session.token = token;
     response.redirect('http://localhost:3000/');
-    console.log(user)
-
 });
 
 app.use('/', function (request, response) {
@@ -238,6 +264,5 @@ app.use('/', function (request, response) {
 });
 
 
-
-
 app.listen(1234);
+console.log("Started listening on port 1234");

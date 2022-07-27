@@ -1,7 +1,15 @@
-#news{
+#news {
     transform: rotate(-8.13deg);
 }
 
-#music{
+#music {
     transform: rotate(15.15deg);
+}
+
+#game {
+    transform: rotate(-18.13deg);
+}
+
+#another {
+    transform: rotate(20.15deg);
 }
